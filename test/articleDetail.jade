@@ -1,0 +1,36 @@
+doctype
+head
+    include ./head
+    meta(charset="utf-8")
+block content
+    .container
+        h1=title
+        .row
+             dl.dl-horizontal
+                 dt 标题:
+                 dd=article.title
+                 dt 作者:
+                 dd=article.author
+                 dt 更新时间:
+                 dd #{moment(article.meta.refreshtime).format('YYYY/MM/DD')}
+                 dt 标签:
+                 each tag in article.tags
+                    dd #{tag.name}
+                 dt 内容:
+                 dd=article.content
+                 dt 简介:
+                 dd=article.des
+                 dt 来源:
+                 dd=article.source
+                 dt 点击量:
+                 dd=article.hits
+                 dt 赞:
+                 dd=article.zan
+                 .article-img
+                     if article.image
+                         if article.image.indexOf('http:') > -1
+                             img(src="#{article.image}", alt="#{article.title}")
+                         else
+                             img(src="/assets/images/#{article.image}", alt="#{article.title}")
+
+

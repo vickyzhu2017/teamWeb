@@ -1,0 +1,18 @@
+doctype
+head
+   title #{title}
+   meta(charset="utf-8")
+   include ./head
+block content
+   .container
+      form(method="POST",action="/account/signin")
+         .modal-header 登录
+         .modal-body
+            .form-group
+               label(for="signinName") 用户名
+               input#signupName.form-control(name="account[username]",type="text")
+            .form-group
+               label(for="signinPassword") 密码
+               input#signupPassword.form-control(name="account[userpw]",type="text")
+         .modal-footer
+            button.btn.btn-success(type="submit") 提交

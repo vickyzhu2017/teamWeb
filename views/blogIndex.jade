@@ -1,0 +1,29 @@
+//
+   Created by kelvinxie on 2016/1/4.
+
+html
+   head
+      link(rel='stylesheet/less',href="/less/blogIndex.less")
+      script(src="//cdn.bootcss.com/less.js/2.5.3/less.js")
+   body.clearfix
+      article.wrap
+          article.logo
+             img(src="/images/logo.png")
+             span 前端之家
+          nav.menu
+             ul
+                li
+                   a 技术分享
+                li
+                   a 资源分享
+                li
+                   a 团队介绍
+          section.list
+              each col in columns
+                  if col.articles && col.articles.length>0
+                      each item in col.articles
+                          if !item.del
+                              a.item(href="/article/#{item._id}")
+                                img(src='#{item.image}')
+                                h3 #{item.title}
+                                p #{item.author}

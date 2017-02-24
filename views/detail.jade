@@ -1,0 +1,23 @@
+//
+   Created by kelvinxie on 2016/1/8.
+html
+   head
+      link(rel='stylesheet/less',href="/less/blogIndex.less")
+      link(rel='stylesheet/less',href="/less/detail.less")
+      script(src="//cdn.bootcss.com/less.js/2.5.3/less.js")
+   body
+      article.wrap
+         section.detail-head.clearfix
+            div.left
+               img(src="#{article.image}")
+            div.right
+               p.title #{article.title}
+               p.info #{article.author} | #{moment(article.meta.refreshtime).format('YYYY.MM.DD hh.mm')}
+         section.detail-content
+            p #{article.content}
+
+
+
+
+
+

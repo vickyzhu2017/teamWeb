@@ -1,0 +1,27 @@
+doctype
+head
+   h1=title
+   meta(charset="utf-8")
+   block content
+      .column-list
+         table
+            thead
+               tr
+                  th 栏目名
+                  th 创建时间
+                  th 更新时间
+                  th 查看
+                  th 修改
+                  th 删除
+            tbody
+               each  item in columns
+                  tr(class="item-id-#{item._id}")
+                     td #{item.name}
+                     td #{moment(item.meta.createdtime).format('YYYY/MM/DD')}
+                     td #{moment(item.meta.refreshtime).format('YYYY/MM/DD')}
+                     td: a(target="_blank",href="../column/#{item._id}") 查看
+                     td: a(target="_blank",href="../column/update/#{item._id}") 修改
+                     td
+                        button.del(type="button",data-id="#{item._id}") 删除
+   script(src="/plug/jquery/2.1.3/jquery.min.js")
+   script(src="/js/admin.js")

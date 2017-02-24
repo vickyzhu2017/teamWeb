@@ -1,0 +1,18 @@
+doctype
+head
+   h1=title
+   meta(charset="utf-8")
+   block content
+      .form-section
+         form(method="POST",action="/admin/team/new")
+            .form-body
+               if team._id
+                  input(type="hidden", name="team[_id]", value=team._id)
+               .form-group
+                  label(for="inputTitle") 团队名称
+                  input#inputTitle.form-control(name="team[title]",type="text",value=team.title)
+               .form-group
+                  label(for="inputContent") 内容
+                  input#inputContent.form-control(name="team[content]",type="text",value=team.content)
+            .form-footer
+               button.btn(type="submit") 提交

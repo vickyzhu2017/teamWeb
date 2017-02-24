@@ -1,0 +1,29 @@
+doctype
+head
+   h1=title
+   meta(charset="utf-8")
+   block content
+      .team-list
+         table
+            thead
+               tr
+                  th 团队名称
+                  th 创建时间
+                  th 更新时间
+                  th 内容
+                  //th 查看
+                  th 修改
+                  th 删除
+            tbody
+               each  item in teams
+                  tr(class="item-id-#{item._id}")
+                     td #{item.title}
+                     td #{moment(item.meta.createdtime).format('YYYY/MM/DD')}
+                     td #{moment(item.meta.refreshtime).format('YYYY/MM/DD')}
+                     td #{item.content}
+                     //td: a(target="_blank",href="/team/#{item._id}") 查看
+                     td: a(target="_blank",href="../team/update/#{item._id}") 修改
+                     td
+                        button.del(type="button",data-id="#{item._id}") 删除
+   script(src="/plug/jquery/2.1.3/jquery.min.js")
+   script(src="/js/admin.js")

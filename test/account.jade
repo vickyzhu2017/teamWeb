@@ -1,0 +1,46 @@
+doctype
+head
+    include ./head
+    meta(charset="utf-8")
+    block content
+        .container
+            h1=title
+            .row
+                .form-section
+                   form.form-horizontal(method="POST",action="/admin/account/new")
+                      .form-body
+                         if account._id
+                            input(type="hidden", name="account[_id]", value=account._id)
+                         .form-group
+                            label.col-sm-2.control-label(for="inputName") 用户名
+                            .col-sm-10
+                                input#inputName.form-control(name="account[username]",type="text",value=account.username)
+                         .form-group
+                            label.col-sm-2.control-label(for="inputPw") 密码
+                            .col-sm-10
+                                input#inputPw.form-control(name="account[userpw]",type="text",value=account.userpw)
+                         .form-group
+                            label.col-sm-2.control-label(for="inputPower") 权限等级
+                            .col-sm-10
+                                input#inputPower.form-control(name="account[power]",type="text",value=account.power)
+                         .form-group
+                            label.col-sm-2.control-label(for="inputUsing") 是否启用
+                            .col-sm-10
+                                if account.using
+                                    label.radio-inline
+                                        input(type="radio", name="account[using]", value="true", checked)
+                                        | 启用
+                                    label.radio-inline
+                                        input(type="radio", name="account[using]", value="false")
+                                        | 不启用
+                                else
+                                    label.radio-inline
+                                        input(type="radio", name="account[using]", value="true")
+                                        | 启用
+                                    label.radio-inline
+                                        input(type="radio", name="account[using]", value="false", checked)
+                                        | 不启用
+                      .form-footer
+                        .col-sm-offset-2.col-sm-10
+                         button.btn(type="submit") 提交
+

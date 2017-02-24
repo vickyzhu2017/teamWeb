@@ -1,0 +1,31 @@
+doctype
+head
+    h1=title
+    meta(charset="utf-8")
+    block content
+    .container
+        .row
+            dl.dl-horizontal
+                dt 姓名:
+                dd=member.name
+                dt 所在团队:
+                each team in member.teams
+                    dd #{team.title}
+                dt 更新时间:
+                dd #{moment(member.meta.refreshtime).format('YYYY/MM/DD')}
+                dt 职位:
+                dd=member.job
+                dt 简介:
+                dd=member.content
+                dt 性别:
+                dd=member.sex
+                dt 年龄:
+                dd=member.age
+                dt 个人网站:
+                dd=member.website
+                .member-img
+                    if member.image
+                        if member.image.indexOf('http:') > -1
+                            img(src="#{member.image}", alt="#{member.name}")
+                        else
+                            img(src="/assets/images/#{member.image}", alt="#{member.name}")

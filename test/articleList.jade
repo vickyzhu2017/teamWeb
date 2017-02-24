@@ -1,0 +1,58 @@
+doctype
+head
+    meta(charset="utf-8")
+    include ./head
+    block content
+        .container
+            h1=title
+            .article-list
+                .row
+                    table.table.table-hover.table-bordered
+                        thead
+                            tr
+                                th 标题
+                                th 作者
+                                th 更新时间
+                                th 栏目
+                                th 标签
+                                th 内容
+                                th 简介
+                                th 来源
+                                th 缩略图
+                                th 点击量
+                                th 赞
+                                th 权重
+                                th 显示
+                                th 置顶
+                                th 查看
+                                th 修改
+                                th 删除
+                        tbody
+                            each  col in columns
+                                if col.articles && col.articles.length>0
+                                    each item in col.articles
+                                        if !item.del
+                                            tr(class="item-id-#{item._id}")
+                                                td #{item.title}
+                                                td #{item.author}
+                                                td #{moment(item.meta.refreshtime).format('YYYY/MM/DD')}
+                                                td #{col.name}
+                                                td  #{item.tags}
+                                                    if item.tags && item.tags.length>0
+                                                        each tag in item.tags
+                                                            #{tag.name}
+                                                td #{item.content}
+                                                td #{item.des}
+                                                td #{item.source}
+                                                td #{item.image}
+                                                td #{item.hits}
+                                                td #{item.zan}
+                                                td #{item.weight}
+                                                td #{item.display}
+                                                td #{item.digest}
+                                                td: a(target="_blank",href="/article/#{item._id}") 查看
+                                                td: a(target="_blank",href="../article/update/#{item._id}") 修改
+                                                td
+                                                    button.del(type="button",data-id="#{item._id}") 删除
+    script(src="/plug/jquery/2.1.3/jquery.min.js")
+    script(src="/js/admin.js")

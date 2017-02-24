@@ -1,0 +1,126 @@
+doctype
+head
+    include ./head
+    meta(charset="utf-8")
+    block content
+        .container
+            h1=title
+            .form-section
+                form.form-horizontal(method="POST",action="/admin/article/new",enctype="multipart/form-data")
+                    .form-body
+                        if article._id
+                            input(type="hidden", name="article[_id]", value=article._id)
+                        .form-group
+                            label.col-sm-2.control-label(for="inputTitle") 标题
+                            .col-sm-10
+                                input#inputTitle.form-control(name="article[title]",type="text",value=article.title)
+                        .form-group
+                            label.col-sm-2.control-label(for="inputAuthor") 作者
+                            .col-sm-10
+                                input#inputAuthor.form-control(name="article[author]",type="text",value=article.author)
+                        .form-group
+                            label.col-sm-2.control-label(for="inputColumn") 新增栏目
+                            .col-sm-10
+                                input#inputColumn.form-control(type="text", name="article[columnName]", value=article.columnName)
+                        .form-group
+                            label.col-sm-2.control-label 栏目选择
+                            .col-sm-10
+                                each col in columns
+                                    label.checkbox-inline
+                                        if article.columns
+                                            - var isColumnChecked=false
+                                            each a_column in article.columns
+                                                if col._id.toString() == a_column.toString()
+                                                    -isColumnChecked=true
+                                            if isColumnChecked
+                                                input(type="checkbox", name="article[columns]", value=col._id, checked)
+                                            else
+                                                input(type="checkbox", name="article[columns]", value=col._id)
+                                        else
+                                            input(type="checkbox", name="article[columns]", value=col._id)
+                                        | #{col.name}
+                        .form-group
+                            label.col-sm-2.control-label(for="inputTag") 新增标签
+                            .col-sm-10
+                                input#inputTag.form-control(type="text", name="article[tagName]", value=article.tagName)    
+                        .form-group
+                            label.col-sm-2.control-label 标签选择
+                            .col-sm-10
+                                each tag in tags
+                                    label.checkbox-inline
+                                        if article.tags
+                                            - var isTagChecked=false
+                                            each a_tag in article.tags
+                                                if tag._id.toString() == a_tag.toString()
+                                                    -isTagChecked=true
+                                            if isTagChecked
+                                                input(type="checkbox", name="article[tags]", value=tag._id, checked)
+                                            else
+                                                input(type="checkbox", name="article[tags]", value=tag._id)
+                                            | #{tag.name}
+                                        else
+                                            input(type="checkbox", name="article[tags]", value=tag._id)
+                                            | #{tag.name}
+
+                        .form-group
+                            label.col-sm-2.control-label(for="inputContent") 内容
+                            .col-sm-10
+                                input#inputContent.form-control(name="article[content]",type="text",value=article.content)
+                        .form-group
+                            label.col-sm-2.control-label(for="inputDes") 简介
+                            .col-sm-10
+                                input#inputDes.form-control(name="article[des]",type="text",value=article.des)
+                        .form-group
+                            label.col-sm-2.control-label(for="inputSource") 来源
+                            .col-sm-10
+                                input#inputSource.form-control(name="article[source]",type="text",value=article.source)
+                        .form-group
+                            label.col-sm-2.control-label(for="inputImg") 缩略图
+                            .col-sm-10
+                                input#inputImg.form-control(name="article[image]",type="text",value=article.image)
+                        .form-group
+                            label.col-sm-2.control-label(for="uploadImg") 缩略图上传
+                            .col-sm-10
+                                input#uploadImg(type="file", name="uploadImg")
+                        .form-group
+                            label.col-sm-2.control-label(for="inputWeight") 权重
+                            .col-sm-10
+                                input#inputWeight.form-control(name="article[weight]",type="text",value=article.weight)
+                        .form-group
+                            label.col-sm-2.control-label(for="inputUsing") 是否显示
+                            .col-sm-10
+                                if article.display
+                                    label.radio-inline
+                                        input(type="radio", name="article[display]", value="true", checked)
+                                        | 显示
+                                    label.radio-inline
+                                        input(type="radio", name="article[display]", value="false")
+                                        | 隐藏
+                                else
+                                    label.radio-inline
+                                        input(type="radio", name="article[display]", value="true")
+                                        | 显示
+                                    label.radio-inline
+                                        input(type="radio", name="article[display]", value="false", checked)
+                                        | 隐藏
+                        .form-group
+                            label.col-sm-2.control-label(for="inputUsing") 是否置顶
+                            .col-sm-10
+                                if article.digest
+                                    label.radio-inline
+                                        input(type="radio", name="article[digest]", value="true", checked)
+                                        | 置顶
+                                    label.radio-inline
+                                        input(type="radio", name="article[digest]", value="false")
+                                        | 不置顶
+                                else
+                                    label.radio-inline
+                                        input(type="radio", name="article[digest]", value="true")
+                                        | 置顶
+                                    label.radio-inline
+                                        input(type="radio", name="article[digest]", value="false", checked)
+                                        | 不置顶
+
+                    .form-footer
+                        .col-sm-10.col-sm-offset-2
+                            button.btn(type="submit") 提交

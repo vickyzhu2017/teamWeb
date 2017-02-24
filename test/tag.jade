@@ -1,0 +1,15 @@
+doctype
+head
+   h1=title
+   meta(charset="utf-8")
+   block content
+      .form-section
+         form(method="POST",action="/admin/tag/new")
+            .form-body
+               if tag._id
+                  input(type="hidden", name="tag[_id]", value=tag._id)
+               .form-group
+                  label(for="inputName") 标签名
+                  input#inputName.form-control(name="tag[name]",type="text",value=tag.name)
+            .form-footer
+               button.btn(type="submit") 提交

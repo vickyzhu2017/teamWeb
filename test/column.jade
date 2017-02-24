@@ -1,0 +1,15 @@
+doctype
+head
+    h1=title
+    meta(charset="utf-8")
+    block content
+        .form-section
+            form(method="POST",action="/admin/column/new")
+                .form-body
+                    if column._id
+                        input(type="hidden", name="column[_id]", value=column._id)
+                    .form-group
+                        label(for="inputName") 栏目名
+                        input#inputName.form-control(name="column[name]",type="text",value=column.name)
+                .form-footer
+                    button.btn(type="submit") 提交

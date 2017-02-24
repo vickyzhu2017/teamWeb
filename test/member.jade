@@ -1,0 +1,63 @@
+doctype
+head
+    h1=title
+    meta(charset="utf-8")
+    block content
+        .form-section
+            form(method="POST",action="/admin/member/new",enctype="multipart/form-data")
+                .form-body
+                    if member._id
+                        input(type="hidden", name="member[_id]", value=member._id)
+                    .form-group
+                        label(for="inputName") 姓名
+                        input#inputName.form-control(name="member[name]",type="text",value=member.name)
+                    .form-group
+                        label.col-sm-2.control-label(for="uploadImg") 头像上传
+                        .col-sm-10
+                           input#uploadImg(type="file", name="uploadImg")
+                    .form-group
+                        label.col-sm-2.control-label(for="inputTeam") 新增团队
+                            input#inputTeam.form-control(type="text", name="member[teamName]", value=member.teamName)
+                    .form-group
+                        label.col-sm-2.control-label 团队选择
+                        each team in teams
+                            label.radio-inline
+                                if member.teams
+                                    - var isTeamChecked=false
+                                    each m_team in member.teams
+                                        if team._id.toString() == m_team.toString()
+                                            - isTeamChecked=true
+                                    if isTeamChecked
+                                        input(type="checkbox", name="member[teams]", value=team._id, checked)
+                                    else
+                                        input(type="checkbox", name="member[teams]", value=team._id)
+
+                                else
+                                    input(type="checkbox", name="member[teams]", value=team._id)
+                                | #{team.title}
+                    .form-group
+                        label(for="inputJob") 职位
+                        input#inputJob.form-control(name="member[job]",type="text",value=member.job)
+                    .form-group
+                        label(for="inputContent") 简介
+                        input#inputContent.form-control(name="member[content]",type="text",value=member.content)
+                    .form-group
+                        label(for="inputSex") 性别
+                            if member.sex=='男'
+                               input(type="radio", name="member[sex]", value="男", checked)
+                               | 男
+                               input(type="radio", name="member[sex]", value="女")
+                               | 女
+                            else
+                               input(type="radio", name="member[sex]", value="男")
+                               | 男
+                               input(type="radio", name="member[sex]", value="女", checked)
+                               | 女
+                    .form-group
+                        label(for="inputAge") 年龄
+                        input#inputAge.form-control(name="member[age]",type="text",value=member.age)
+                    .form-group
+                        label(for="inputWebsite") 个人网站
+                        input#inputWebsite.form-control(name="member[website]",type="text",value=member.website)
+                .form-footer
+                    button.btn(type="submit") 提交

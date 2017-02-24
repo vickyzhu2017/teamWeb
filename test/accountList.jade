@@ -1,0 +1,31 @@
+doctype
+head
+    include ./head
+    meta(charset="utf-8")
+    block content
+        .container
+            h1=title
+            .account-list
+                table.table.table-hover.table-bordered
+                    thead
+                        tr
+                            th 名字
+                            th 创建时间
+                            th 更新时间
+                            th 权限
+                            th 是否启用
+                            th 查看
+                            th 修改
+                            th 删除
+                    tbody
+                        each  item in accounts
+                            tr(class="item-id-#{item._id}")
+                                td #{item.username}
+                                td #{moment(item.meta.createdtime).format('YYYY/MM/DD')}
+                                td #{moment(item.meta.refreshtime).format('YYYY/MM/DD')}
+                                td #{item.power}
+                                td #{item.using}
+                                td: a(target="_blank",href="../account/#{item._id}") 查看
+                                td: a(target="_blank",href="../account/update/#{item._id}") 修改
+                                td
+                                    button.del(type="button",data-id="#{item._id}") 删除
