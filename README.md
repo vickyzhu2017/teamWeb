@@ -1,4 +1,10 @@
-#团队博客管理后台
+#团队博客管理后台(teanWeb)
+-   后台：nodejs express
+-   数据库：mongodb
+-   html模板引擎：jade
+-   js框架：jquery
+-   css预处理语言：less
+-   基于npm scripts来集成开发命令
 
 ## 工程目录
     - assets/                       # 存放项目资源
@@ -12,6 +18,20 @@
     app.js                          # 启动nodejs服务
     README.md                       # 说明文件
 
+
+## how to use
+```
+git clone https://github.com/vickyzhu2017/teamWeb.git
+cd teamWeb && npm install
+npm run start
+```
+##功能模块
+###团队管理(teams)
+### 团队成员管理(members)
+###栏目管理(columns)
+### 文章管理(articles)
+###标签管理(teams)
+###后台账号管理(teams)
 
 
 
