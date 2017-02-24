@@ -1,4 +1,4 @@
-#团队博客管理后台(teanWeb)
+#团队博客管理后台(teamWeb)
 -   后台：nodejs express
 -   数据库：mongodb
 -   html模板引擎：jade
